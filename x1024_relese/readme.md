@@ -19,7 +19,7 @@ my_passwd = 'my_passwd'
 
 ftp服务器的使用见https://github.com/loboris/MicroPython_ESP32_psRAM_LoBo/wiki/ftpserver
 
-User:xlinx Password:xlinx，注意需要把.bit文件加载到/flash/overlay/ 文件夹下。
+User:xilinx Password:xilinx，注意需要把.bit文件加载到/flash/overlay/ 文件夹下。
 
 ## 4.配置FPGA
 你可以在Python shell 中输入
