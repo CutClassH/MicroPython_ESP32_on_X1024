@@ -15,3 +15,4 @@ xfpga.overlay('xxx.bit')
 
 
 ## 使用方法
+见x1024_relese目录
