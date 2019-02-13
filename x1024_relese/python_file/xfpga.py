@@ -1,5 +1,6 @@
 #   Module:     xfpga
 #   Description: the funtions for X1024 board.
+#   [https://github.com/PYNQ-X1024/MicroPython_ESP32_on_X1024]
 #   Copyright (c) 2019, X1024 Project.
 #   All rights reserved.
 
@@ -12,7 +13,7 @@ from micropython import const
 from machine import SPI, Pin
 
 
-_XFPGA_MODEL = '7s15'
+XFPGA_MODEL = '7s15ftgb196'
 
 _XFPGA_CCLK_PIN = const(22)
 _XFPGA_DIN_PIN = const(23)
@@ -28,13 +29,14 @@ def bitstream_check(file_name):
     :return: success:overlay_path ,fail:None
     '''
 
+    rootdir_list = os.listdir('/')
     overlay_list = os.listdir('/flash/overlay')
     if file_name  in overlay_list:
         overlay_path = '/flash/overlay/'
-    elif 'sdcard' in os.listdir('/'):
-        overlay_list = os.listdir('/sdcard/overlay')
+    elif 'sd' in rootdir_list:
+        overlay_list = os.listdir('/sd/overlay')
         if file_name  in overlay_list:
-            overlay_path = '/flash/overlay/'
+            overlay_path = '/sd/overlay/'
         else:
             print('"' + file_name + '" does not exist in overlay folder.')
             return None
@@ -42,21 +44,12 @@ def bitstream_check(file_name):
         print('"'+file_name +'" does not exist in overlay folder.')
         return None
 
-    if file_name.endswith('.bin'):
+    if file_name.endswith('.bit') or file_name.endswith('.bit'):
         return overlay_path
-    elif file_name.endswith('.bit'):
-        f = open(overlay_path + file_name)
-        f.seek(57)
-        if _XFPGA_MODEL == f.read(4):
-            f.close()
-        else:
-            f.close()
-            print('"'+file_name +'" is not a configuration file for '+ _XFPGA_MODEL +'.')
-            return None
     else:
         print('"'+file_name +'" is wrong file type.')
         return None
-    return overlay_path
+
 
 
 def overlay(file_name):
@@ -68,7 +61,7 @@ def overlay(file_name):
 
     overlay_path = bitstream_check(file_name)
     if  overlay_path == None:
-        raise ValueError('Wrong file name in /overlay')
+        raise ValueError('Wrong File')
 
     # Soft SPI for serial output
     xfpga_spi = SPI(2,baudrate=20000000,  polarity=0, phase=0,firstbit =SPI.MSB,\
