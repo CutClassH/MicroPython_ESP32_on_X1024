@@ -29,25 +29,23 @@ def bitstream_check(file_name):
     :return: success:overlay_path ,fail:None
     '''
 
-    rootdir_list = os.listdir('/')
-    overlay_list = os.listdir('/flash/overlay')
-    if file_name  in overlay_list:
-        overlay_path = '/flash/overlay/'
-    elif 'sd' in rootdir_list:
-        overlay_list = os.listdir('/sd/overlay')
-        if file_name  in overlay_list:
-            overlay_path = '/sd/overlay/'
-        else:
-            print('"' + file_name + '" does not exist in overlay folder.')
-            return None
-    else:
-        print('"'+file_name +'" does not exist in overlay folder.')
+    if (file_name.endswith('.bit') or file_name.endswith('.bit')) is False:
         return None
 
-    if file_name.endswith('.bit') or file_name.endswith('.bit'):
-        return overlay_path
+    dir_list = os.listdir('/')
+    overlay_list = os.listdir('/flash')
+    if 'overlay'  in overlay_list :
+        overlay_list = os.listdir('/flash/overlay')
+        if file_name  in overlay_list:
+            return  '/flash/overlay/'
+    elif "sd" in dir_list:
+        overlay_list = os.listdir('/sd')
+        if 'overlay' in overlay_list:
+            overlay_list = os.listdir('/sd/overlay')
+            if file_name in overlay_list:
+                return '/sd/overlay/'
     else:
-        print('"'+file_name +'" is wrong file type.')
+        print('"'+file_name +'" does not exist in overlay folder.')
         return None
 
 
