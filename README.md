@@ -10,9 +10,9 @@ import xfpga
 xfpga.overlay('xxx.bit')
 ```
 你需要注意
-* 你需要把.bit文件放在ESP32的 /flash/overlay/ 路径下(如果没有 overlay文件夹，手动创建一个)。
-* 当前版本，配置FPGA可能需要很长的时间（我测试大约需要140s）
+* 你需要把.bit文件放在ESP32的 /sd/overlay/ 路径下(如果没有 overlay文件夹，手动创建一个)。
+* 当前版本，配置FPGA可能需要很长的时间（测试大约需要3-4s）
 
 
 ## 使用方法
-见x1024_relese目录
+见test目录
