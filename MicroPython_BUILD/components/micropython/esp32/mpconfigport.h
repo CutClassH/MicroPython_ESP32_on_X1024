@@ -281,6 +281,7 @@ extern const struct _mp_obj_module_t mp_module_usocket;
 extern const struct _mp_obj_module_t mp_module_machine;
 extern const struct _mp_obj_module_t mp_module_network;
 extern const struct _mp_obj_module_t mp_module_ymodem;
+extern const struct _mp_obj_module_t mp_module_xlibs;
 
 #ifdef CONFIG_MICROPY_USE_REQUESTS
 extern const struct _mp_obj_module_t mp_module_requests;
@@ -339,6 +340,7 @@ extern const struct _mp_obj_module_t mp_module_bluetooth;
     { MP_OBJ_NEW_QSTR(MP_QSTR_network),  (mp_obj_t)&mp_module_network }, \
     { MP_OBJ_NEW_QSTR(MP_QSTR_ymodem),   (mp_obj_t)&mp_module_ymodem }, \
 	{ MP_OBJ_NEW_QSTR(MP_QSTR_uhashlib), (mp_obj_t)&mp_module_uhashlib }, \
+    { MP_OBJ_NEW_QSTR(MP_QSTR_xlibs),    (mp_obj_t)&mp_module_xlibs }, \
 	BUILTIN_MODULE_DISPLAY \
 	BUILTIN_MODULE_CURL \
     BUILTIN_MODULE_REQUESTS \
@@ -412,7 +414,7 @@ typedef long mp_off_t;
 
 // board specifics
 
-#define MICROPY_PY_SYS_PLATFORM "esp32_LoBo"
+#define MICROPY_PY_SYS_PLATFORM "X1024_LoBo"
 #define MICROPY_HW_BOARD_NAME   CONFIG_MICROPY_HW_BOARD_NAME
 #define MICROPY_HW_MCU_NAME     CONFIG_MICROPY_HW_MCU_NAME
 #define MICROPY_TIMEZONE        CONFIG_MICROPY_TIMEZONE
